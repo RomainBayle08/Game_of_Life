@@ -7,21 +7,21 @@ struct Cell{
     is_alive: bool
 }
 
-struct plateau{
+struct Plateau {
     height : usize,
     width : usize,
     cells : Vec<Cell>
 }
 
-impl plateau {
-    fn create_plateau( width: usize, height: usize) -> plateau {
+impl Plateau {
+    fn create_plateau( width: usize, height: usize) -> Plateau {
         let mut grid: Vec<Cell> = vec![];
-        for i in 0..(width * height) {
-            let newCell = Cell { is_alive: rand::thread_rng().gen_bool(0.5) };
-            grid.push(newCell);
+        for _ in 0..(width * height) {
+            let new_cell = Cell { is_alive: thread_rng().gen_bool(0.5) };
+            grid.push(new_cell);
         }
-        let this_pleateau = plateau { width, height, cells: grid };
-        return this_pleateau
+        let this_plateau = Plateau { width, height, cells: grid };
+        return this_plateau
     }
 
     fn print_grid(&self) {
@@ -83,7 +83,7 @@ impl plateau {
     }
 }
 fn main() {
-    let mut jeu = plateau::create_plateau(10, 10);
+    let mut jeu = Plateau::create_plateau(10, 10);
 
     for _ in 1..10{
         jeu.print_grid();
